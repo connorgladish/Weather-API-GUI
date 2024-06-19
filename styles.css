@@ -1,0 +1,102 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.weather-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Use viewport height for full-screen background */
+    background: url('WeatherWidget.jpeg') no-repeat center center/cover;
+    margin: 0;
+    padding: 0;
+}
+
+.weather-container {
+    position: relative;
+    z-index: 1; /* Ensure containers are above background */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+}
+
+
+.weather-box {
+    position: absolute;
+    padding: 5px;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 1;
+}
+
+#weather-box-TL {
+    top: -425px;
+    left: 250px;
+    width: 385px;
+    height: 235px;
+
+}
+
+#weather-box-TR {
+    top: -425px;
+    left: 682px;
+    width: 385px;
+    height: 235px;
+
+}
+
+#weather-box-BBL {
+    top: -146px;
+    left: 250px;
+    width: 385px;
+    height: 235px;
+
+}
+
+#weather-box-BR {
+    top: -146px;
+    left: 682px;
+    width: 385px;
+    height: 235px;
+
+}
+
+#weather-box-HR1 {
+    top: 200px;
+    left: -525px;
+    width: 195px;
+    height: 300px;
+}
+
+#weather-box-HR2 {
+    top: 200px;
+    left: -160px;
+    width: 195px;
+    height: 300px;
+}
+
+#weather-box-HR3 {
+    top: 200px;
+    left: 210px;
+    width: 195px;
+    height: 300px;
+}
+
+#weather-box-HR4 {
+    top: 200px;
+    left: 562px;
+    width: 195px;
+    height: 300px;
+}
+
+#weather-box-HR5 {
+    top: 200px;
+    left: 914px;
+    width: 195px;
+    height: 300px;
+}
