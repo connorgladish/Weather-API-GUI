@@ -2,6 +2,7 @@
 async function fetchWeatherData(locationCode) {
     const forecastUrl = `https://api.weather.gov/gridpoints/MEG/${locationCode}/forecast/hourly`;
 
+    
     try {
         const response = await axios.get(forecastUrl, {
             headers: {}
