@@ -2,7 +2,6 @@
 async function fetchWeatherData(locationCode) {
     const forecastUrl = `https://api.weather.gov/gridpoints/MEG/${locationCode}/forecast/hourly`;
 
-    
     try {
         const response = await axios.get(forecastUrl, {
             headers: {}
@@ -75,7 +74,7 @@ async function displayWeatherInfo(locationCode) {
         // Populate the weather boxes with the current hour's data
         document.getElementById('weather-box-Disp').innerHTML = `<p>Current</p>`;
         document.getElementById('weather-box-TempDisp').innerHTML = `<p>${currentPeriod.temperature} °F</p>`;
-        document.getElementById('weather-box-IconDisp').innerHTML = `<img src="${currentImage}">`;
+        document.getElementById('weather-box-IconDisp').innerHTML = `<img src="Media/${currentImage}">`;
         document.getElementById('weather-box-TL').innerHTML = `<p>${currentPeriod.shortForecast}</p>`;
         document.getElementById('weather-box-BR').innerHTML = `<p>Precipitation Chance: ${currentPeriod.probabilityOfPrecipitation.value}%</p>`;
         document.getElementById('weather-box-TR').innerHTML = `<p>Humidity: ${currentPeriod.relativeHumidity.value}%</p>`;
@@ -107,7 +106,7 @@ async function displayWeatherInfo(locationCode) {
 
                 periodDiv.innerHTML = `
                     <p>${startTime}</p>
-                    <img src="${WeatherIcon}">
+                    <img src="Media/${WeatherIcon}">
                     <p>${period.temperature} °F</p>      
                 `;
 
