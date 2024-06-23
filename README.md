@@ -19,5 +19,6 @@ This weather app not only serves to inform park visitors but also contributes to
 
 ---
 
-UI/UX Designer / Programmer: Trey Wright
-Backend Developer: Connor Gladish
+ # UI/UX Designer / Programmer: Trey Wright
+ ----
+ # Backend Developer: Connor Gladish
