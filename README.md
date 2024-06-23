@@ -16,3 +16,8 @@ Custom Weather Icons: Utilizing a custom mapping of weather conditions to icons,
 Information TV Integration: Designed specifically for display on information TV screens throughout Discovery Park, the app provides essential weather updates to enhance visitor experience and safety.
 
 This weather app not only serves to inform park visitors but also contributes to the overall experience by keeping them informed about current and upcoming weather conditions, thereby supporting their planning and enjoyment during their time at Discovery Park of America.
+
+---
+
+UI/UX Designer / Programmer: Trey Wright
+Backend Developer: Connor Gladish
