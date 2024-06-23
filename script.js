@@ -1,103 +1,158 @@
 // Function to fetch weather data
 async function fetchWeatherData(locationCode) {
-  const forecastUrl = `https://api.weather.gov/gridpoints/MEG/${locationCode}/forecast/hourly`;
+    const forecastUrl = `https://api.weather.gov/gridpoints/MEG/${locationCode}/forecast/hourly`;
 
-  try {
-      const response = await axios.get(forecastUrl, {
-          headers: {
-          }
-      });
-      return response.data;
-  } catch (error) {
-      console.error(`Error fetching weather data: ${error}`);
-      return null;
-  }
+    try {
+        const response = await axios.get(forecastUrl, {
+            headers: {}
+        });
+        return response.data;
+    } catch (error) {
+        console.error(`Error fetching weather data: ${error}`);
+        return null;
+    }
+}
+// funcion to convert the short forcast into our own weather icons
+function getWeatherIcon(shortForecast) {
+    if (shortForecast.includes('Sunny')) {
+        return 'Sunny.png';
+    } 
+    else if (shortForecast.includes('Showers And Thunderstorms')) {
+        return 'Thunderstorm.png';
+    } 
+    else if (shortForecast.includes('Windy')) {
+        return 'Windy.png';
+    } 
+    else if (shortForecast.includes('Snow')) {
+        return 'Snow.png';
+    } 
+    else if (shortForecast.includes('Mostly Sunny')) {
+        return 'Sunny.png';
+    } 
+    else if (shortForecast.includes('Partly Sunny')) {
+        return 'PartlyCloudy.png';
+    } 
+    else if (shortForecast.includes('Mostly Clear')) {
+        return 'Sunny.png';
+    } 
+    else if (shortForecast.includes('Partly Cloudy')) {
+        return 'PartlyCloudy.png';
+    } 
+    else if (shortForecast.includes('Mostly Cloudy')) {
+        return 'Cloudy.png';
+    }  
+    else if (shortForecast.includes('Clear')) {
+        return 'Sunny.png';
+    } 
+    
+    return 'Overflow.png'; // if a weather condition is not declared above this image will be displayed so we know we need to add an image for it
 }
 
 // Function to format and display weather information in HTML
 async function displayWeatherInfo(locationCode) {
-  try {
-      const weatherData = await fetchWeatherData(locationCode);
+    try {
+        const weatherData = await fetchWeatherData(locationCode);
 
-      if (!weatherData || !weatherData.properties || !weatherData.properties.periods) {
-          console.error('Invalid weather data format');
-          return;
-      }
+        if (!weatherData || !weatherData.properties || !weatherData.properties.periods) {
+            console.error('Invalid weather data format');
+            return;
+        }
 
-      const periods = weatherData.properties.periods;
+        const periods = weatherData.properties.periods;
 
-      // Find the current hour index
-      const currentHourIndex = findCurrentHourIndex(periods);
+        // Find the current hour index
+        const currentHourIndex = findCurrentHourIndex(periods);
 
-      // Iterate through each period and update HR1 to HR5
-      for (let i = 0; i < Math.min(periods.length, 5); i++) {
-          const containerId = `weather-box-HR${i + 1}`;
-          const weatherContainer = document.getElementById(containerId);
+        // Display the current hour's data in the specified boxes
+        const currentPeriod = periods[currentHourIndex];
 
-          if (weatherContainer) {
-              weatherContainer.innerHTML = ''; // Clear previous content
+        // Convert start time to 12-hour format
+        const startTime = convertTo12Hour(currentPeriod.startTime);
 
-              const period = periods[currentHourIndex + i];
+        const currentImage = getWeatherIcon(currentPeriod.shortForecast); 
+        
+        // Populate the weather boxes with the current hour's data
+        document.getElementById('weather-box-Disp').innerHTML = `<p>Current</p>`;
+        document.getElementById('weather-box-TempDisp').innerHTML = `<p>${currentPeriod.temperature} °F</p>`;
+        document.getElementById('weather-box-IconDisp').innerHTML = `<img src="${currentImage}">`;
+        document.getElementById('weather-box-TL').innerHTML = `<p>${currentPeriod.shortForecast}</p>`;
+        document.getElementById('weather-box-BR').innerHTML = `<p>Precipitation Chance: ${currentPeriod.probabilityOfPrecipitation.value}%</p>`;
+        document.getElementById('weather-box-TR').innerHTML = `<p>Humidity: ${currentPeriod.relativeHumidity.value}%</p>`;
+        document.getElementById('weather-box-BL').innerHTML = `<p>${currentPeriod.windSpeed} Winds</p>`;
+        
+    
+        // Iterate through each period starting from the next hour and update HR1 to HR4
+        for (let i = 1; i <= 5; i++) {
+            const containerId = `weather-box-HR${i}`;
+            const weatherContainer = document.getElementById(containerId);
 
-              // Convert start and end times to 12-hour format
-              const startTime = convertTo12Hour(period.startTime);
-              const endTime = convertTo12Hour(period.endTime);
+            if (weatherContainer) {
+                weatherContainer.innerHTML = ''; // Clear previous content
 
-              // Convert wind speed from "5 mph" to "5 MPH"
-              const windSpeed = period.windSpeed.toUpperCase();
+                const period = periods[currentHourIndex + i];
 
-              // Extract the icon URL from the API response
-              const iconUrl = period.icon;
+                // Convert start and end times to 12-hour format
+                const startTime = convertTo12Hour(period.startTime);
+                const endTime = convertTo12Hour(period.endTime);
 
-              const periodDiv = document.createElement('div');
-              periodDiv.classList.add('weather-period');
+                // Convert wind speed from "5 mph" to "5 MPH"
+                const windSpeed = period.windSpeed.toUpperCase();
 
-              periodDiv.innerHTML = `
-                  <h3>${startTime}</h3>
-                  <img src="${iconUrl}" alt="${period.shortForecast}" class="weather-icon">
-                  <p>Temperature: ${period.temperature} °F</p>
-                  <p>Short Forecast: ${period.shortForecast}</p>
-                  <p>Wind: ${windSpeed} from ${period.windDirection}</p>
-                  <p>Humidity: ${period.relativeHumidity.value}%</p>
-                  <p>Precipitation Probability: ${period.probabilityOfPrecipitation.value}%</p>
-              `;
+                // Get custom image based on the short forecast
+                const WeatherIcon = getWeatherIcon(period.shortForecast);
 
-              weatherContainer.appendChild(periodDiv);
-          } else {
-              console.error(`Weather container ${containerId} not found.`);
-          }
-      }
+                const periodDiv = document.createElement('div');
+                periodDiv.classList.add('weather-period');
 
-  } catch (error) {
-      console.error(`Error displaying weather info: ${error}`);
-  }
+                periodDiv.innerHTML = `
+                    <p>${startTime}</p>
+                    <img src="${WeatherIcon}">
+                    <p>${period.temperature} °F</p>      
+                `;
+
+                weatherContainer.appendChild(periodDiv);
+            } else {
+                console.error(`Weather container ${containerId} not found.`);
+            }
+        }
+
+    } catch (error) {
+        console.error(`Error displaying weather info: ${error}`);
+    }
 }
 
 // Helper function to find the index of the current hour's data
 function findCurrentHourIndex(periods) {
-  const currentDateTime = new Date();
+    const currentDateTime = new Date();
 
-  for (let i = 0; i < periods.length; i++) {
-      const startTime = new Date(periods[i].startTime);
-      const endTime = new Date(periods[i].endTime);
+    for (let i = 0; i < periods.length; i++) {
+        const startTime = new Date(periods[i].startTime);
+        const endTime = new Date(periods[i].endTime);
 
-      if (currentDateTime >= startTime && currentDateTime < endTime) {
-          return i;
-      }
-  }
+        if (currentDateTime >= startTime && currentDateTime < endTime) {
+            return i;
+        }
+    }
 
-  // Default to the first hour if current hour not found
-  return 0;
+    // Default to the first hour if current hour not found
+    return 0;
 }
 
 // Helper function to convert time to 12-hour format
 function convertTo12Hour(timeString) {
-  const time = new Date(timeString);
-  return time.toLocaleString('en-US', {
-      hour: 'numeric',
-      hour12: true
-  }).replace(':00', ''); 
+    const time = new Date(timeString);
+    return time.toLocaleString('en-US', {
+        hour: 'numeric',
+        hour12: true
+    }).replace(':00', ''); 
 }
 
-const locationCode = '75,125'; // Replace with your location code
+const locationCode = '36,89'; // Replace with your location code
+
+// Initial call to display weather info
 displayWeatherInfo(locationCode);
+
+// Function to refresh weather info every 30 minutes
+setInterval(function() {
+    displayWeatherInfo(locationCode);
+}, 30 * 60 * 1000); // 30 minutes in milliseconds
