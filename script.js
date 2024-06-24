@@ -155,4 +155,4 @@ displayWeatherInfo(locationCode);
 // Function to refresh weather info every 30 minutes
 setInterval(function() {
     displayWeatherInfo(locationCode);
-}, 30 * 60 * 1000); // 30 minutes in milliseconds
+}, 5 * 60 * 1000); // 5 minutes in milliseconds
