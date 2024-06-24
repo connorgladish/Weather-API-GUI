@@ -9,7 +9,7 @@ Key features of the app include:
 
 Live Weather Updates: The app fetches and displays current weather information, including temperature, forecasts, wind speeds, humidity, and precipitation chances from the weather.gov API.
 
-Automated Refresh: Weather data updates automatically every 30 minutes to reflect any changes in weather conditions, ensuring visitors have access to the most current information throughout their visit.
+Automated Refresh: Weather data updates automatically every 5 minutes to reflect any changes in weather conditions, ensuring visitors have access to the most current information throughout their visit.
 
 Custom Weather Icons: Utilizing a custom mapping of weather conditions to icons, the app visually represents weather forecasts with intuitive icons for ease of understanding.
 
