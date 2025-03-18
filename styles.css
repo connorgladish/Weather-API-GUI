@@ -114,8 +114,8 @@ color: white;
 
 #weather-box-IconDisp img,
 .weather-period img {
-    width: 90px;  /* Adjusted size */
-    height: 90px; /* Adjusted size */
+    width: 120px;  /* Adjusted size */
+    height: 120px; /* Adjusted size */
 }
 
 #weather-box-HR1,

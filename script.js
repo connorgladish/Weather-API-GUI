@@ -15,34 +15,34 @@ async function fetchWeatherData(locationCode) {
 // funcion to convert the short forcast into our own weather icons
 function getWeatherIcon(shortForecast) {
     if (shortForecast.includes('Sunny')) {
-        return 'Sunny.png';
+        return 'svg/day.svg';
     } 
     else if (shortForecast.includes('Showers And Thunderstorms')) {
-        return 'Thunderstorm.png';
+        return 'svg/tstorms.svg';
     } 
     else if (shortForecast.includes('Windy')) {
-        return 'Windy.png';
+        return 'svg/cloudy.svg';
     } 
     else if (shortForecast.includes('Snow')) {
-        return 'Snow.png';
+        return 'svg/partlysunny.svg';
     } 
     else if (shortForecast.includes('Mostly Sunny')) {
-        return 'Sunny.png';
+        return 'svg/day.svg';
     } 
     else if (shortForecast.includes('Partly Sunny')) {
-        return 'PartlyCloudy.png';
+        return 'svg/partlysunny.svg';
     } 
     else if (shortForecast.includes('Mostly Clear')) {
-        return 'Sunny.png';
+        return 'svg/day.svg';
     } 
     else if (shortForecast.includes('Partly Cloudy')) {
-        return 'PartlyCloudy.png';
+        return 'svg/partlycloudy.svg';
     } 
     else if (shortForecast.includes('Mostly Cloudy')) {
-        return 'Cloudy.png';
+        return 'svg/cloudy.svgs';
     }  
     else if (shortForecast.includes('Clear')) {
-        return 'Sunny.png';
+        return 'svg/day.svg';
     } 
     
     return 'Overflow.png'; // if a weather condition is not declared above this image will be displayed so we know we need to add an image for it
