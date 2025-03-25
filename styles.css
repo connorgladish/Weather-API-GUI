@@ -54,8 +54,8 @@ body, html {
 }
 
 #weather-box-IconDisp{
-    top: -120px;
-    left: -410px;
+    top: -125px;
+    left: -480px;
 }
 
 #weather-box-Disp,
@@ -114,8 +114,10 @@ color: white;
 
 #weather-box-IconDisp img,
 .weather-period img {
-    width: 120px;  /* Adjusted size */
-    height: 120px; /* Adjusted size */
+    width: 240px;  /* Adjusted size */
+    height: 240px; /* Adjusted size */
+    margin-top: -70px;
+    margin-bottom: -70px;
 }
 
 #weather-box-HR1,
