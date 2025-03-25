@@ -39,7 +39,7 @@ function getWeatherIcon(shortForecast) {
         return 'svg/partlycloudy.svg';
     } 
     else if (shortForecast.includes('Mostly Cloudy')) {
-        return 'svg/cloudy.svgs';
+        return 'svg/cloudy.svg';
     }  
     else if (shortForecast.includes('Clear')) {
         return 'svg/day.svg';
