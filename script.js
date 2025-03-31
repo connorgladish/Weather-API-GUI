@@ -23,6 +23,12 @@ function getWeatherIcon(shortForecast) {
     else if (shortForecast.includes('Windy')) {
         return 'svg/cloudy.svg';
     } 
+    else if (shortForecast.includes('Chance Rain')) {
+        return 'svg/chancerain.svg';
+    } 
+    else if (shortForecast.includes('Rain')) {
+        return 'svg/rainy-6.svg';
+    } 
     else if (shortForecast.includes('Snow')) {
         return 'svg/partlysunny.svg';
     } 
@@ -39,7 +45,10 @@ function getWeatherIcon(shortForecast) {
         return 'svg/partlycloudy.svg';
     } 
     else if (shortForecast.includes('Mostly Cloudy')) {
-        return 'svg/cloudy.svgs';
+        return 'svg/cloudy.svg';
+    }  
+    else if (shortForecast.includes('Cloudy')) {
+        return 'svg/cloudy.svg';
     }  
     else if (shortForecast.includes('Clear')) {
         return 'svg/day.svg';
