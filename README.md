@@ -1,4 +1,4 @@
-![preview.png](Media/weatherapi.png)
+![preview.png](Media/weather.gif)
 
 # Project Summary: Discovery Park Weather App
 
