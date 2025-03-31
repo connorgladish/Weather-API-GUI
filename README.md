@@ -1,4 +1,4 @@
-![preview.png](Media/weather.gif)
+<img src="Media/weather.gif" alt="preview.png" width="600"/>
 
 # Project Summary: Discovery Park Weather App
 
