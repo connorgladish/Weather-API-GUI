@@ -54,7 +54,7 @@ function getWeatherIcon(shortForecast) {
         return 'svg/day.svg';
     } 
     
-    return 'Overflow.png'; // if a weather condition is not declared above this image will be displayed so we know we need to add an image for it
+    return 'svg/cloudy.svg'; // if a weather condition is not declared above this image will be displayed so we know we need to add an image for it
 }
 
 // Function to format and display weather information in HTML
